@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TestProject
 {
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -29,6 +30,7 @@ namespace TestProject
         {
             IsMouseVisible = true;
             base.Initialize();
+            Window.Title = "Nanosoft";
         }
 
         /// <summary>
