@@ -29,7 +29,6 @@ namespace TestProject
         {
             IsMouseVisible = true;
             base.Initialize();
-
         }
 
         /// <summary>
@@ -38,7 +37,6 @@ namespace TestProject
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Background = Content.Load<Texture2D>("Space");
         }
