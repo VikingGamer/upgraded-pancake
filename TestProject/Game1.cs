@@ -12,7 +12,7 @@ namespace TestProject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D Background;
+        Texture2D background;
 
         public Game1()
         {
@@ -40,7 +40,7 @@ namespace TestProject
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Background = Content.Load<Texture2D>("Space");
+            background = Content.Load<Texture2D>("Space");
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace TestProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(Background, Vector2.Zero, Color.White);
+            spriteBatch.Draw(background, Vector2.Zero, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
