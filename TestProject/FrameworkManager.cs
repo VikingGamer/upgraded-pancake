@@ -25,7 +25,8 @@ namespace TestProject
         /// <param name="res"></param>
         public FrameworkManager(float x, float y)
         {
-            Resolution = new Vector2(x, y);
+            x = Resolution.X;
+            y = Resolution.Y;
         }
 
         /// <summary>
