@@ -25,10 +25,9 @@ namespace TestProject
         /// <param name="res"></param>
         public FrameworkManager(float x, float y)
         {
-            x = Resolution.X;
-            y = Resolution.Y;
+            Resolution = new Vector2(x, y);
         }
-
+        
         /// <summary>
         /// Refresh and apply framework settings.
         /// </summary>
@@ -39,7 +38,7 @@ namespace TestProject
             graphics.PreferredBackBufferHeight = (int)Resolution.Y;
             graphics.ApplyChanges();
         }
-
+        
         #region Properties
         public Vector2 Resolution { get; set; }
         #endregion
