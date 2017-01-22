@@ -10,6 +10,7 @@ namespace TestProject
 {
     class FrameworkManager
     {
+        public Vector2 resolution;
         public enum ScreenStates
         {
             Splash,
@@ -19,15 +20,14 @@ namespace TestProject
             Highscore
         }
 
-        public static Vector2 resolution { private set; get; }
-
         /// <summary>
         /// Construct the framework.
         /// </summary>
         /// <param name="res"></param>
-        public FrameworkManager(Vector2 res)
+        public FrameworkManager(float x, float y)
         {
-            resolution = new Vector2(res.X, res.Y);
+            resolution.X = x;
+            resolution.Y = y;
         }
 
         /// <summary>
@@ -40,6 +40,7 @@ namespace TestProject
             graphics.PreferredBackBufferHeight = (int)resolution.Y;
             graphics.ApplyChanges();
         }
-
+        
+        public Vector2 Resolution { get { return resolution; } set { resolution = value; } }
     }
 }

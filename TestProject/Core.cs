@@ -21,7 +21,7 @@ namespace TestProject
 
         public Core()
         {
-            Framework = new FrameworkManager(new Vector2(1280, 800));
+            Framework = new FrameworkManager(1280, 720);
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
