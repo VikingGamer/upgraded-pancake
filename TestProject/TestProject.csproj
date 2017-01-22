@@ -38,9 +38,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Game1.cs" />
+    <Compile Include="Core.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="GameStateManenger.cs" />
+    <Compile Include="FrameworkManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

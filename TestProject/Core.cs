@@ -8,14 +8,20 @@ namespace TestProject
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Core : Game
     {
+        FrameworkManager.ScreenStates screenState;
+
+        #region ?
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D background;
+        FrameworkManager Framework;
+        #endregion
 
-        public Game1()
+        public Core()
         {
+            Framework = new FrameworkManager(new Vector2(1280, 800));
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
@@ -28,9 +34,16 @@ namespace TestProject
         /// </summary>
         protected override void Initialize()
         {
-            IsMouseVisible = true;
-            base.Initialize();
-            Window.Title = "Nanosoft";
+                base.Initialize();
+
+                Framework.Refresh(graphics);
+                IsMouseVisible = true;
+                Window.Title = "Nanosoft";
+
+            if (Framework != null)
+            {
+                screenState = FrameworkManager.ScreenStates.Splash;
+            }
         }
 
         /// <summary>
