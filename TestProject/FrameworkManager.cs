@@ -5,11 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace TestProject
 {
     class FrameworkManager
     {
+        /// <summary>
+        /// Available screen states.
+        /// Every screen class inherit from the general Screen class.
+        /// </summary>
         public enum ScreenStates
         {
             Splash,
@@ -37,10 +42,12 @@ namespace TestProject
             graphics.PreferredBackBufferWidth = (int)Resolution.X;
             graphics.PreferredBackBufferHeight = (int)Resolution.Y;
             graphics.ApplyChanges();
+            
         }
         
         #region Properties
-        public Vector2 Resolution { get; set; }
+        public Vector2 Resolution { get; set; }             ///> Window resolution
+        public static ContentManager Content { get; set; }  ///> Asset provider
         #endregion
     }
 }
