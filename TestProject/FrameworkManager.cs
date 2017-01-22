@@ -10,7 +10,6 @@ namespace TestProject
 {
     class FrameworkManager
     {
-        public Vector2 resolution;
         public enum ScreenStates
         {
             Splash,
@@ -26,8 +25,7 @@ namespace TestProject
         /// <param name="res"></param>
         public FrameworkManager(float x, float y)
         {
-            resolution.X = x;
-            resolution.Y = y;
+            Resolution = new Vector2(x, y);
         }
 
         /// <summary>
@@ -36,11 +34,13 @@ namespace TestProject
         /// <param name="graphics"></param>
         public void Refresh(GraphicsDeviceManager graphics)
         {
-            graphics.PreferredBackBufferWidth = (int)resolution.X;
-            graphics.PreferredBackBufferHeight = (int)resolution.Y;
+            graphics.PreferredBackBufferWidth = (int)Resolution.X;
+            graphics.PreferredBackBufferHeight = (int)Resolution.Y;
             graphics.ApplyChanges();
         }
-        
-        public Vector2 Resolution { get { return resolution; } set { resolution = value; } }
+
+        #region Properties
+        public Vector2 Resolution { get; set; }
+        #endregion
     }
 }
