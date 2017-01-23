@@ -11,18 +11,20 @@ namespace TestProject
     public class Core : Game
     {
         FrameworkManager.ScreenStates screenState;
-
+        
         #region ?
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D background;
+        Texture2D button;
         FrameworkManager Framework;
         #endregion
-
+        UIElement button1;
         public Core()
         {
             Framework = new FrameworkManager(1280, 720);
             graphics = new GraphicsDeviceManager(this);
+            
             Content.RootDirectory = "Content";
         }
         
@@ -44,6 +46,7 @@ namespace TestProject
             {
                 screenState = FrameworkManager.ScreenStates.Splash;
             }
+            button1 = new UIElement(Vector2.One, true, new Rectangle(10, 10, 400, 400), button);
         }
 
         /// <summary>
@@ -54,6 +57,8 @@ namespace TestProject
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             background = Content.Load<Texture2D>("Space");
+            button = Content.Load<Texture2D>("Button");
+
         }
 
         /// <summary>
@@ -76,7 +81,7 @@ namespace TestProject
                 Exit();
 
 
-
+            button1.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -89,6 +94,7 @@ namespace TestProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             spriteBatch.Draw(background, Vector2.Zero, Color.White);
+            button1.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

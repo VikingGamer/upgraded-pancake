@@ -41,8 +41,7 @@ namespace TestProject
         {
             graphics.PreferredBackBufferWidth = (int)Resolution.X;
             graphics.PreferredBackBufferHeight = (int)Resolution.Y;
-            graphics.ApplyChanges();
-            
+            graphics.ApplyChanges();       
         }
         
         #region Properties

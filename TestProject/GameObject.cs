@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TestProject
 {
-    class GameObject
+    public class GameObject
     {
         Vector2 position;
         bool isVisible;
@@ -19,5 +19,6 @@ namespace TestProject
             this.isVisible = isVisible;
         }
 
+        public bool IsVisible { get { return isVisible; } set { isVisible = value; } }
     }
 }
