@@ -26,6 +26,7 @@ namespace TestProject
             graphics = new GraphicsDeviceManager(this);
             
             Content.RootDirectory = "Content";
+            
         }
         
         /// <summary>
@@ -46,7 +47,7 @@ namespace TestProject
             {
                 screenState = FrameworkManager.ScreenStates.Splash;
             }
-            button1 = new UIElement(Vector2.One, true, new Rectangle(10, 10, 400, 400), button);
+            button1 = new UIElement(new Point(20), true, button);
         }
 
         /// <summary>

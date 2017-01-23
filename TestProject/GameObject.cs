@@ -11,9 +11,9 @@ namespace TestProject
 {
     public class GameObject
     {
-        Vector2 position;
+        Point position;
         bool isVisible;
-        public GameObject(Vector2 position, bool isVisible)
+        public GameObject(Point position, bool isVisible)
         {
             this.position = position;
             this.isVisible = isVisible;

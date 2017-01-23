@@ -13,9 +13,10 @@ namespace TestProject
     {
         Rectangle currentBorder;
         Texture2D currentTexture;
-        public UIElement(Vector2 position, bool isVisible, Rectangle border, Texture2D texture) : base(position, isVisible)
+        public UIElement(Point position, bool isVisible, Texture2D texture) : base(position, isVisible)
         {
-            this.currentBorder = border;
+            currentBorder.Height = texture.Height;
+            currentBorder.Width = texture.Width;
             this.currentTexture = texture;
         }
         public void Update(GameTime gameTime)
