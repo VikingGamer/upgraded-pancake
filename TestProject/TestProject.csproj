@@ -41,6 +41,8 @@
     <Compile Include="Core.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="FrameworkManager.cs" />
+    <Compile Include="GameScreens\Menu.cs" />
+    <Compile Include="GameScreens\Splash.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen.cs" />

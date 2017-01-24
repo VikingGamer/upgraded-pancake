@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -18,8 +19,11 @@ namespace TestProject
         Texture2D background;
         Texture2D button;
         FrameworkManager Framework;
+        List<Screen> Screens = new List<Screen>();
         #endregion
+
         UIElement button1;
+
         public Core()
         {
             Framework = new FrameworkManager(1280, 720);
@@ -37,7 +41,9 @@ namespace TestProject
         /// </summary>
         protected override void Initialize()
         {
-                base.Initialize();
+            base.Initialize();
+            GameScreens.Splash SSplash = new GameScreens.Splash();
+            Screens.Add(SSplash);
 
                 Framework.Refresh(graphics);
                 IsMouseVisible = true;
@@ -59,7 +65,7 @@ namespace TestProject
             spriteBatch = new SpriteBatch(GraphicsDevice);
             background = Content.Load<Texture2D>("Space");
             button = Content.Load<Texture2D>("Button");
-
+            
         }
 
         /// <summary>
@@ -81,6 +87,12 @@ namespace TestProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            #region Splash Screen
+            if (screenState == FrameworkManager.ScreenStates.Splash)
+            {
+                Screens[0].Update(gameTime);
+            }
+            #endregion
 
             button1.Update(gameTime);
             base.Update(gameTime);
@@ -97,6 +109,12 @@ namespace TestProject
             spriteBatch.Draw(background, Vector2.Zero, Color.White);
             button1.Draw(spriteBatch);
             spriteBatch.End();
+
+            if (screenState == FrameworkManager.ScreenStates.Splash)
+            {
+                Screens[(int)FrameworkManager.ScreenStates.Splash].Draw(spriteBatch);
+            }
+
             base.Draw(gameTime);
         }
     }

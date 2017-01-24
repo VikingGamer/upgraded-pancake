@@ -10,25 +10,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TestProject
 {
-    class Screen
+    public abstract class Screen
     {
-        protected ContentManager content;
-
-        public virtual void LoadContent()
-        {
-            content = new ContentManager(FrameworkManager.Content.ServiceProvider, "Content");
-        }
-        public virtual void UnloadContent()
-        {
-            content.Unload();
-        }
-        public virtual void Update(GameTime gameTime)
-        {
-            
-        }
-        public virtual void Draw(SpriteBatch spritebatch)
-        {
-
-        }
+        public virtual void Update(GameTime gameTime) { }
+        public virtual void Draw(SpriteBatch spritebatch) { }
     }
 }
