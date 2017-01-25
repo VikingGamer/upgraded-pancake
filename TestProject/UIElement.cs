@@ -21,14 +21,15 @@ namespace TestProject
         }
         public void Update(GameTime gameTime)
         {
-            if (Checkcollision(currentBorder) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            if (CheckMouseCollision(currentBorder) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 currentTexture.Dispose();
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(currentTexture, currentBorder.Location.ToVector2(), Color.White);
         }
-        private bool Checkcollision(Rectangle Rec1)
+        private bool CheckMouseCollision(Rectangle Rec1)
         {
             if (Rec1.Contains(Mouse.GetState().Position))
                 return true;

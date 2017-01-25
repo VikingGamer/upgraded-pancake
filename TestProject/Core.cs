@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TestProject.GameScreens;
 
 namespace TestProject
 {
@@ -42,7 +43,7 @@ namespace TestProject
         protected override void Initialize()
         {
             base.Initialize();
-            GameScreens.Splash SSplash = new GameScreens.Splash();
+            var SSplash = new Splash();
             Screens.Add(SSplash);
 
                 Framework.Refresh(graphics);
