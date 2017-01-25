@@ -12,7 +12,7 @@ namespace TestProject
     /// </summary>
     public class Core : Game
     {
-        FrameworkManager.ScreenStates screenState;
+        ScreenStates currentScreen;
         
         #region ?
         GraphicsDeviceManager graphics;
@@ -52,7 +52,7 @@ namespace TestProject
 
             if (Framework != null)
             {
-                screenState = FrameworkManager.ScreenStates.Splash;
+                currentScreen = ScreenStates.Splash;
             }
             button1 = new UIElement(new Point(20), true, button);
         }
@@ -89,7 +89,7 @@ namespace TestProject
                 Exit();
 
             #region Splash Screen
-            if (screenState == FrameworkManager.ScreenStates.Splash)
+            if (currentScreen == ScreenStates.Splash)
             {
                 Screens[0].Update(gameTime);
             }
@@ -111,9 +111,9 @@ namespace TestProject
             button1.Draw(spriteBatch);
             spriteBatch.End();
 
-            if (screenState == FrameworkManager.ScreenStates.Splash)
+            if (currentScreen == ScreenStates.Splash)
             {
-                Screens[(int)FrameworkManager.ScreenStates.Splash].Draw(spriteBatch);
+                Screens[(int)ScreenStates.Splash].Draw(spriteBatch);
             }
 
             base.Draw(gameTime);

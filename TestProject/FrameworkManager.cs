@@ -9,20 +9,22 @@ using Microsoft.Xna.Framework.Content;
 
 namespace TestProject
 {
+
+    /// <summary>
+    /// Available screen states.
+    /// Every screen class inherit from the general Screen class.
+    /// </summary>
+    public enum ScreenStates
+    {
+        Splash,
+        Menu,
+        Game,
+        Pause,
+        Highscore
+    }
+
     class FrameworkManager
     {
-        /// <summary>
-        /// Available screen states.
-        /// Every screen class inherit from the general Screen class.
-        /// </summary>
-        public enum ScreenStates
-        {
-            Splash,
-            Menu,
-            Game,
-            Pause,
-            Highscore
-        }
 
         /// <summary>
         /// Construct the framework.
