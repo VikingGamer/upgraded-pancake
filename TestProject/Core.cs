@@ -12,16 +12,21 @@ namespace TestProject
     /// </summary>
     public class Core : Game
     {
-        ScreenStates currentScreen;
+        public static ScreenStates currentScreen;
         
         #region ?
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        FrameworkManager Framework;
+        #endregion
+
+        #region Screens
+        Splash ScreenSplash;
+        Menu ScreenMenu;
+        #endregion
+
         Texture2D background;
         Texture2D button;
-        FrameworkManager Framework;
-        List<Screen> Screens = new List<Screen>();
-        #endregion
 
         UIElement button1;
 
@@ -29,7 +34,10 @@ namespace TestProject
         {
             Framework = new FrameworkManager(1280, 720);
             graphics = new GraphicsDeviceManager(this);
-            
+
+            ScreenSplash = new Splash();
+            ScreenMenu = new Menu();
+
             Content.RootDirectory = "Content";
             
         }
@@ -43,8 +51,6 @@ namespace TestProject
         protected override void Initialize()
         {
             base.Initialize();
-            var SSplash = new Splash();
-            Screens.Add(SSplash);
 
                 Framework.Refresh(graphics);
                 IsMouseVisible = true;
@@ -54,6 +60,7 @@ namespace TestProject
             {
                 currentScreen = ScreenStates.Splash;
             }
+
             button1 = new UIElement(new Point(20), true, button);
         }
 
@@ -88,12 +95,23 @@ namespace TestProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            #region Splash Screen
-            if (currentScreen == ScreenStates.Splash)
+            switch (currentScreen)
             {
-                Screens[0].Update(gameTime);
+                case ScreenStates.Splash:
+                    ScreenSplash.Update(gameTime);
+                    break;
+                case ScreenStates.Menu:
+                    ScreenMenu.Update(gameTime);
+                    break;
+                case ScreenStates.Game:
+                    break;
+                case ScreenStates.Pause:
+                    break;
+                case ScreenStates.Highscore:
+                    break;
+                default:
+                    break;
             }
-            #endregion
 
             button1.Update(gameTime);
             base.Update(gameTime);
@@ -107,6 +125,25 @@ namespace TestProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
+
+            switch (currentScreen)
+            {
+                case ScreenStates.Splash:
+                    ScreenSplash.Draw(spriteBatch);
+                    break;
+                case ScreenStates.Menu:
+                    ScreenMenu.Draw(spriteBatch);
+                    break;
+                case ScreenStates.Game:
+                    break;
+                case ScreenStates.Pause:
+                    break;
+                case ScreenStates.Highscore:
+                    break;
+                default:
+                    break;
+            }
+
             spriteBatch.Draw(background, Vector2.Zero, Color.White);
             button1.Draw(spriteBatch);
             spriteBatch.End();
