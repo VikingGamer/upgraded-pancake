@@ -13,6 +13,7 @@ namespace TestProject
     {
         Rectangle currentBorder;
         Texture2D currentTexture;
+        
         public UIElement(Point position, bool isVisible, Texture2D texture) : base(position, isVisible)
         {
             currentBorder.Height = texture.Height;
@@ -22,7 +23,7 @@ namespace TestProject
         public void Update(GameTime gameTime)
         {
             if (Checkcollision(currentBorder) && Mouse.GetState().LeftButton == ButtonState.Pressed)
-                currentTexture.Dispose();
+                Core.currentScreen = ScreenStates.Menu;
         }
         public void Draw(SpriteBatch spriteBatch)
         {

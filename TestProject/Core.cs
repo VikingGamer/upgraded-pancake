@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TestProject.GameScreens;
 
 namespace TestProject
 {
@@ -11,15 +13,21 @@ namespace TestProject
     /// </summary>
     public class Core : Game
     {
-        ScreenStates currentScreen;
-        
-        #region ?
+        public static ScreenStates currentScreen;
+
+        #region Core variables
+        public ContentManager cntManager { get; set; }
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public static SpriteBatch spriteBatch;
+        FrameworkManager Framework;
+        #endregion
+
         Texture2D background;
         Texture2D button;
-        FrameworkManager Framework;
-        List<Screen> Screens = new List<Screen>();
+
+        #region Game Screens
+        Splash SplashScreen = new Splash();
+        Menu MenuScreen = new Menu();
         #endregion
 
         UIElement button1;
@@ -28,8 +36,9 @@ namespace TestProject
         {
             Framework = new FrameworkManager(1280, 720);
             graphics = new GraphicsDeviceManager(this);
-            
-            Content.RootDirectory = "Content";
+
+            //Content.RootDirectory = "Content";
+            cntManager.RootDirectory = "Content";
             
         }
         
@@ -42,8 +51,6 @@ namespace TestProject
         protected override void Initialize()
         {
             base.Initialize();
-            GameScreens.Splash SSplash = new GameScreens.Splash();
-            Screens.Add(SSplash);
 
                 Framework.Refresh(graphics);
                 IsMouseVisible = true;
@@ -63,8 +70,8 @@ namespace TestProject
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            background = Content.Load<Texture2D>("Space");
-            button = Content.Load<Texture2D>("Button");
+            background = cntManager.Load<Texture2D>("Space");
+            button = cntManager.Load<Texture2D>("Button");
             
         }
 
@@ -87,12 +94,23 @@ namespace TestProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            #region Splash Screen
-            if (currentScreen == ScreenStates.Splash)
+            switch (currentScreen)
             {
-                Screens[0].Update(gameTime);
+                case ScreenStates.Splash:
+                    SplashScreen.Update(gameTime);
+                    break;
+                case ScreenStates.Menu:
+                    MenuScreen.Update(gameTime);
+                    break;
+                case ScreenStates.Game:
+                    break;
+                case ScreenStates.Pause:
+                    break;
+                case ScreenStates.Highscore:
+                    break;
+                default:
+                    break;
             }
-            #endregion
 
             button1.Update(gameTime);
             base.Update(gameTime);
@@ -106,14 +124,29 @@ namespace TestProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(background, Vector2.Zero, Color.White);
+            #region Screen states
+            switch (currentScreen)
+            {
+                case ScreenStates.Splash:
+                    SplashScreen.Draw(spriteBatch);
+                    break;
+                case ScreenStates.Menu:
+                    MenuScreen.Draw(spriteBatch);
+                    break;
+                case ScreenStates.Game:
+                    break;
+                case ScreenStates.Pause:
+                    break;
+                case ScreenStates.Highscore:
+                    break;
+                default:
+                    break;
+            }
+            #endregion
             button1.Draw(spriteBatch);
             spriteBatch.End();
 
-            if (currentScreen == ScreenStates.Splash)
-            {
-                Screens[(int)ScreenStates.Splash].Draw(spriteBatch);
-            }
+            
 
             base.Draw(gameTime);
         }
