@@ -111,7 +111,10 @@ namespace TestProject
             button1.Draw(spriteBatch);
             spriteBatch.End();
 
-            
+            if (currentScreen == ScreenStates.Splash)
+            {
+                Screens[(int)ScreenStates.Splash].Draw(spriteBatch);
+            }
 
             base.Draw(gameTime);
         }
