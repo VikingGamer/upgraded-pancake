@@ -14,7 +14,7 @@ namespace TestProject
     {
         public static ScreenStates currentScreen;
         
-        #region ?
+        #region Engine components
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         FrameworkManager Framework;
@@ -24,9 +24,8 @@ namespace TestProject
         Splash ScreenSplash;
         Menu ScreenMenu;
         #endregion
-
         
-
+        
         public Core()
         {
             Framework = new FrameworkManager(1280, 720);
@@ -38,6 +37,7 @@ namespace TestProject
             Content.RootDirectory = "Content";
             
         }
+
         
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -48,8 +48,7 @@ namespace TestProject
         protected override void Initialize()
         {
             base.Initialize();
-
-                
+            
                 IsMouseVisible = true;
                 Window.Title = "Nanosoft";
 
@@ -59,7 +58,7 @@ namespace TestProject
             }
             ScreenMenu.Initialize();
             Framework.Refresh(graphics);
-
+            
         }
 
         /// <summary>
@@ -89,8 +88,8 @@ namespace TestProject
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
+                currentScreen = ScreenStates.Menu;
+            
             switch (currentScreen)
             {
                 case ScreenStates.Splash:

@@ -15,6 +15,8 @@ namespace TestProject.GameScreens
         Texture2D TexButton;
         UIElement button1;
 
+        public bool InGame { get; set; }
+
         public override void Initialize()
         {
             
