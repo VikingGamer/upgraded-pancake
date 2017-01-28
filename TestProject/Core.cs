@@ -25,10 +25,7 @@ namespace TestProject
         Menu ScreenMenu;
         #endregion
 
-        Texture2D background;
-        Texture2D button;
-
-        UIElement button1;
+        
 
         public Core()
         {
@@ -52,16 +49,17 @@ namespace TestProject
         {
             base.Initialize();
 
-                Framework.Refresh(graphics);
+                
                 IsMouseVisible = true;
                 Window.Title = "Nanosoft";
 
             if (Framework != null)
             {
-                currentScreen = ScreenStates.Splash;
+                currentScreen = ScreenStates.Menu;
             }
+            ScreenMenu.Initialize();
+            Framework.Refresh(graphics);
 
-            button1 = new UIElement(new Point(20), true, button);
         }
 
         /// <summary>
@@ -71,9 +69,7 @@ namespace TestProject
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            background = Content.Load<Texture2D>("Space");
-            button = Content.Load<Texture2D>("Button");
-            
+            ScreenMenu.LoadContent(Content);       
         }
 
         /// <summary>
@@ -113,7 +109,7 @@ namespace TestProject
                     break;
             }
 
-            button1.Update(gameTime);
+            
             base.Update(gameTime);
         }
 
@@ -143,9 +139,6 @@ namespace TestProject
                 default:
                     break;
             }
-
-            spriteBatch.Draw(background, Vector2.Zero, Color.White);
-            button1.Draw(spriteBatch);
             spriteBatch.End();
 
             

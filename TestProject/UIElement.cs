@@ -11,27 +11,26 @@ namespace TestProject
 {
     public class UIElement : GameObject
     {
-        Rectangle currentBorder;
-        Texture2D currentTexture;
+        public Texture2D texture;
+        public Point position;
         public UIElement(Point position, bool isVisible, Texture2D texture) : base(position, isVisible)
         {
-            currentBorder.Height = texture.Height;
-            currentBorder.Width = texture.Width;
-            this.currentTexture = texture;
+            this.texture = texture;
+            this.position = position;
         }
         public void Update(GameTime gameTime)
         {
-            if (CheckMouseCollision(currentBorder) && Mouse.GetState().LeftButton == ButtonState.Pressed)
-                currentTexture.Dispose();
+            if (Clicked() == true)
+                texture.Dispose();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(currentTexture, currentBorder.Location.ToVector2(), Color.White);
+            spriteBatch.Draw(texture, position.ToVector2(), Color.White);
         }
-        private bool CheckMouseCollision(Rectangle Rec1)
+        bool Clicked()
         {
-            if (Rec1.Contains(Mouse.GetState().Position))
+            if (texture.Bounds.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 return true;
             else
                 return false;
