@@ -11,26 +11,26 @@ namespace TestProject
 {
     public class UIElement : GameObject
     {
-        public Texture2D texture;
-        public Point position;
+        public Texture2D Texture;
+        public Point Position;
         public UIElement(Point position, bool isVisible, Texture2D texture) : base(position, isVisible)
         {
-            this.texture = texture;
-            this.position = position;
+            Texture = texture;
+            Position = position;
         }
         public void Update(GameTime gameTime)
         {
             if (Clicked() == true)
-                texture.Dispose();
+                Texture.Dispose();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position.ToVector2(), Color.White);
+            spriteBatch.Draw(Texture, Position.ToVector2(), Color.White);
         }
         bool Clicked()
         {
-            if (texture.Bounds.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            if (Texture.Bounds.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 return true;
             else
                 return false;

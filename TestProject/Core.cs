@@ -15,8 +15,8 @@ namespace TestProject
         public static ScreenStates currentScreen { get; set; }
         
         #region Engine components
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        GraphicsDeviceManager Graphics;
+        SpriteBatch SpriteBatch;
         FrameworkManager Framework;
         #endregion
 
@@ -29,7 +29,7 @@ namespace TestProject
         public Core()
         {
             Framework = new FrameworkManager(1280, 720);
-            graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this);     
 
             ScreenSplash = new Splash();
             ScreenMenu = new Menu();
@@ -57,7 +57,7 @@ namespace TestProject
                 currentScreen = ScreenStates.Splash;
             }
             ScreenMenu.Initialize();
-            Framework.Refresh(graphics);
+            Framework.Refresh(Graphics);
             
         }
 
@@ -67,7 +67,7 @@ namespace TestProject
         /// </summary>
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
             ScreenMenu.LoadContent(Content);       
         }
 
@@ -119,15 +119,15 @@ namespace TestProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
+            SpriteBatch.Begin();
 
             switch (currentScreen)
             {
                 case ScreenStates.Splash:
-                    ScreenSplash.Draw(spriteBatch);
+                    ScreenSplash.Draw(SpriteBatch);
                     break;
                 case ScreenStates.Menu:
-                    ScreenMenu.Draw(spriteBatch);
+                    ScreenMenu.Draw(SpriteBatch);
                     break;
                 case ScreenStates.Game:
                     break;
@@ -138,7 +138,7 @@ namespace TestProject
                 default:
                     break;
             }
-            spriteBatch.End();
+            SpriteBatch.End();
 
             
 

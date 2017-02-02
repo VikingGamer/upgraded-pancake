@@ -29,7 +29,6 @@ namespace TestProject.GameScreens
 
         public override void Draw(SpriteBatch spritebatch)
         {
-
             //base.Draw(spritebatch);
         }
     }
