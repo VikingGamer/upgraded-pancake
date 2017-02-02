@@ -35,7 +35,6 @@ namespace TestProject
             ScreenMenu = new Menu();
 
             Content.RootDirectory = "Content";
-            
         }
 
         
@@ -141,7 +140,6 @@ namespace TestProject
             spriteBatch.End();
 
             
-
             base.Draw(gameTime);
         }
     }
