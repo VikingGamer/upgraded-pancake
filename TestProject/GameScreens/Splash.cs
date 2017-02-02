@@ -24,7 +24,7 @@ namespace TestProject.GameScreens
         }
         public override void Initialize(FrameworkManager framework)
         {
-            CenterVec2 = new Vector2((framework.Resolution.X / 2) - (Font.Texture.Width / 3), (framework.Resolution.Y / 2) - (Font.Texture.Height / 4));
+            CenterVec2 = new Vector2(((framework.Resolution.X/2) - (Font.MeasureString("nanogear").X /2)), ((framework.Resolution.Y / 2) - (Font.MeasureString("nanogear").Y / 2)));
         }
         public override void Update(GameTime gameTime)
         {
