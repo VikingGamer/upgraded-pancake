@@ -20,7 +20,7 @@ namespace TestProject
         }
 
         #region Properties
-        public bool IsVisible { get; set; }
+        public bool IsVisible { get { return isVisible; } set { isVisible = value; } }
         #endregion
 
     }

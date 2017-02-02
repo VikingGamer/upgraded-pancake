@@ -23,10 +23,12 @@ namespace TestProject
             if (Clicked() == true)
                 texture.Dispose();
         }
-
+        GameObject k = new GameObject(new Point(1,2), true);
+        
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position.ToVector2(), Color.White);
+            k.
         }
         bool Clicked()
         {
