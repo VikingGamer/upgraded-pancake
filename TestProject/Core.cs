@@ -12,7 +12,7 @@ namespace TestProject
     /// </summary>
     public class Core : Game
     {
-        public static ScreenStates currentScreen;
+        public static ScreenStates currentScreen { get; set; }
         
         #region Engine components
         GraphicsDeviceManager graphics;
@@ -53,7 +53,7 @@ namespace TestProject
 
             if (Framework != null)
             {
-                currentScreen = ScreenStates.Menu;
+                currentScreen = ScreenStates.Splash;
             }
             ScreenMenu.Initialize();
             Framework.Refresh(graphics);
