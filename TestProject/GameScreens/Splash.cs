@@ -13,35 +13,34 @@ namespace TestProject.GameScreens
     public class Splash : Screen
     {
         const int m_duration = 7;
-        double time;
-        Vector2 center;
-        SpriteFont font;
+        double m_time;
+        Vector2 CenterVec2;
+        SpriteFont Font;
 
         
         public override void LoadContent(ContentManager Content)
         {
-            font = Content.Load<SpriteFont>("Code");
+            Font = Content.Load<SpriteFont>("Code");
         }
         public override void Initialize(FrameworkManager framework)
         {
-            center = new Vector2((framework.Resolution.X / 2) - (font.Texture.Width / 2), (framework.Resolution.Y / 2) - (font.Texture.Height / 2));
+            CenterVec2 = new Vector2((framework.Resolution.X / 2) - (Font.Texture.Width / 3), (framework.Resolution.Y / 2) - (Font.Texture.Height / 4));
         }
         public override void Update(GameTime gameTime)
         {
             #region Time handling
-            time += gameTime.ElapsedGameTime.TotalSeconds;
-            if (time >= m_duration)
+            m_time += gameTime.ElapsedGameTime.TotalSeconds;
+            if (m_time >= m_duration)
             {
                 Core.currentScreen = ScreenStates.Menu;
             }
             #endregion
 
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, "nanogear", center, Color.White);
+            spriteBatch.DrawString(Font, "nanogear", CenterVec2, Color.White);
         }
     }
 }

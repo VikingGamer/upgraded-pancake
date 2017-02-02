@@ -24,8 +24,7 @@ namespace TestProject
         Splash ScreenSplash;
         Menu ScreenMenu;
         #endregion
-        
-        
+
         public Core()
         {
             Framework = new FrameworkManager(1280, 720);
