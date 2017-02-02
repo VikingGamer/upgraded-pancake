@@ -50,14 +50,15 @@ namespace TestProject
             
                 IsMouseVisible = true;
                 Window.Title = "Nanosoft";
-
+            
             if (Framework != null)
             {
                 currentScreen = ScreenStates.Splash;
             }
-            ScreenMenu.Initialize();
-            Framework.Refresh(graphics);
+            ScreenMenu.Initialize(Framework);
             
+            Framework.Refresh(graphics);
+            ScreenSplash.Initialize(Framework);
         }
 
         /// <summary>
@@ -67,7 +68,8 @@ namespace TestProject
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            ScreenMenu.LoadContent(Content);       
+            ScreenMenu.LoadContent(Content);
+            ScreenSplash.LoadContent(Content);     
         }
 
         /// <summary>
@@ -88,7 +90,7 @@ namespace TestProject
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 currentScreen = ScreenStates.Menu;
-            
+
             switch (currentScreen)
             {
                 case ScreenStates.Splash:
@@ -106,7 +108,6 @@ namespace TestProject
                 default:
                     break;
             }
-
             
             base.Update(gameTime);
         }
@@ -117,7 +118,7 @@ namespace TestProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
             switch (currentScreen)

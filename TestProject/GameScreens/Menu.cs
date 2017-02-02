@@ -17,7 +17,7 @@ namespace TestProject.GameScreens
 
         public bool InGame { get; set; }
 
-        public override void Initialize()
+        public override void Initialize(FrameworkManager framework)
         {
             
         }
