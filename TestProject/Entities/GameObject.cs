@@ -19,6 +19,9 @@ namespace TestProject
             this.isVisible = isVisible;
         }
 
-        public bool IsVisible { get { return isVisible; } set { isVisible = value; } }
+        #region Properties
+        public bool IsVisible { get; set; }
+        #endregion
+
     }
 }

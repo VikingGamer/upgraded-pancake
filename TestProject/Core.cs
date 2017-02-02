@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TestProject.GameScreens;
@@ -14,33 +13,31 @@ namespace TestProject
     public class Core : Game
     {
         public static ScreenStates currentScreen;
-
-        #region Core variables
-        public ContentManager cntManager { get; set; }
+        
+        #region Engine components
         GraphicsDeviceManager graphics;
-        public static SpriteBatch spriteBatch;
+        SpriteBatch spriteBatch;
         FrameworkManager Framework;
         #endregion
 
-        Texture2D background;
-        Texture2D button;
-
-        #region Game Screens
-        Splash SplashScreen = new Splash();
-        Menu MenuScreen = new Menu();
+        #region Screens
+        Splash ScreenSplash;
+        Menu ScreenMenu;
         #endregion
-
-        UIElement button1;
-
+        
+        
         public Core()
         {
             Framework = new FrameworkManager(1280, 720);
             graphics = new GraphicsDeviceManager(this);
 
-            //Content.RootDirectory = "Content";
-            cntManager.RootDirectory = "Content";
+            ScreenSplash = new Splash();
+            ScreenMenu = new Menu();
+
+            Content.RootDirectory = "Content";
             
         }
+
         
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -51,16 +48,17 @@ namespace TestProject
         protected override void Initialize()
         {
             base.Initialize();
-
-                Framework.Refresh(graphics);
+            
                 IsMouseVisible = true;
                 Window.Title = "Nanosoft";
 
             if (Framework != null)
             {
-                currentScreen = ScreenStates.Splash;
+                currentScreen = ScreenStates.Menu;
             }
-            button1 = new UIElement(new Point(20), true, button);
+            ScreenMenu.Initialize();
+            Framework.Refresh(graphics);
+            
         }
 
         /// <summary>
@@ -70,9 +68,7 @@ namespace TestProject
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            background = cntManager.Load<Texture2D>("Space");
-            button = cntManager.Load<Texture2D>("Button");
-            
+            ScreenMenu.LoadContent(Content);       
         }
 
         /// <summary>
@@ -92,15 +88,15 @@ namespace TestProject
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
+                currentScreen = ScreenStates.Menu;
+            
             switch (currentScreen)
             {
                 case ScreenStates.Splash:
-                    SplashScreen.Update(gameTime);
+                    ScreenSplash.Update(gameTime);
                     break;
                 case ScreenStates.Menu:
-                    MenuScreen.Update(gameTime);
+                    ScreenMenu.Update(gameTime);
                     break;
                 case ScreenStates.Game:
                     break;
@@ -112,7 +108,7 @@ namespace TestProject
                     break;
             }
 
-            button1.Update(gameTime);
+            
             base.Update(gameTime);
         }
 
@@ -124,14 +120,14 @@ namespace TestProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            #region Screen states
+
             switch (currentScreen)
             {
                 case ScreenStates.Splash:
-                    SplashScreen.Draw(spriteBatch);
+                    ScreenSplash.Draw(spriteBatch);
                     break;
                 case ScreenStates.Menu:
-                    MenuScreen.Draw(spriteBatch);
+                    ScreenMenu.Draw(spriteBatch);
                     break;
                 case ScreenStates.Game:
                     break;
@@ -142,8 +138,6 @@ namespace TestProject
                 default:
                     break;
             }
-            #endregion
-            button1.Draw(spriteBatch);
             spriteBatch.End();
 
             

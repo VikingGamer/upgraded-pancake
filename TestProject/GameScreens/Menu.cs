@@ -11,26 +11,33 @@ namespace TestProject.GameScreens
 {
     public class Menu : Screen
     {
-        SpriteFont räkna;
-        int hej;
-        public override void LoadContent()
+        Texture2D background;
+        Texture2D TexButton;
+        UIElement button1;
+
+        public bool InGame { get; set; }
+
+        public override void Initialize()
         {
-             räkna = Core.cntManager.Load<SpriteFont>("Main");
+            
         }
-        public override void UnloadContent()
+        public override void LoadContent(ContentManager Content)
         {
-            base.UnloadContent();
+            TexButton = Content.Load<Texture2D>("Button");
+            background = Content.Load<Texture2D>("Space");
+            button1 = new UIElement(Point.Zero, true, TexButton);
         }
         public override void Update(GameTime gameTime)
         {
-            int hej = 6;
-            hej++;
+            button1.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spritebatch)
         {
+            spritebatch.Draw(background, Vector2.Zero, Color.White);
+            spritebatch.Draw(button1.texture, button1.position.ToVector2(), Color.White);
+            button1.Draw(spritebatch);
 
-            spritebatch.DrawString(räkna, hej.ToString(), Vector2.One, Color.White);
         }
     }
 }
