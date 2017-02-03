@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace TestProject
+namespace TestProject.Entities
 {
     public class UIElement : GameObject
     {
@@ -27,7 +27,7 @@ namespace TestProject
         {
             spriteBatch.Draw(Texture, Position.ToVector2(), Color.White);
         }
-        bool Clicked()
+        public bool Clicked()
         {
             if (Texture.Bounds.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 return true;

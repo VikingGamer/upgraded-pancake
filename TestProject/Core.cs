@@ -10,7 +10,7 @@ namespace TestProject
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Core : Game
+    public class Core : Microsoft.Xna.Framework.Game
     {
         public static ScreenStates currentScreen { get; set; }
         
@@ -21,8 +21,9 @@ namespace TestProject
         #endregion
 
         #region Screens
-        Splash ScreenSplash;
-        Menu ScreenMenu;
+        GameScreens.Splash ScreenSplash;
+        GameScreens.Menu ScreenMenu;
+        GameScreens.Game ScreenGame;
         #endregion
 
         public Core()
@@ -30,8 +31,9 @@ namespace TestProject
             Framework = new FrameworkManager(1280, 720);
             Graphics = new GraphicsDeviceManager(this);
 
-            ScreenSplash = new Splash();
-            ScreenMenu = new Menu();
+            ScreenSplash = new GameScreens.Splash();
+            ScreenMenu = new GameScreens.Menu();
+            ScreenGame = new GameScreens.Game();
 
             Content.RootDirectory = "Content";
         }
@@ -99,6 +101,7 @@ namespace TestProject
                     ScreenMenu.Update(gameTime);
                     break;
                 case ScreenStates.Game:
+                    ScreenGame.Update(gameTime);
                     break;
                 case ScreenStates.Pause:
                     break;
@@ -129,6 +132,7 @@ namespace TestProject
                     ScreenMenu.Draw(SpriteBatch);
                     break;
                 case ScreenStates.Game:
+                    ScreenGame.Draw(SpriteBatch);
                     break;
                 case ScreenStates.Pause:
                     break;

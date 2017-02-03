@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using TestProject.Entities;
 
 namespace TestProject.GameScreens
 {
@@ -30,6 +31,7 @@ namespace TestProject.GameScreens
         public override void Update(GameTime gameTime)
         {
             Button1.Update(gameTime);
+            if (Button1.Clicked()) { Core.currentScreen = ScreenStates.Game; }
         }
 
         public override void Draw(SpriteBatch spritebatch)
