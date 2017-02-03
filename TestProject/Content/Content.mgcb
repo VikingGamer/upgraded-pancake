@@ -37,3 +37,9 @@
 /processorParam:TextureFormat=Color
 /build:Button.png
 
+#begin Code.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Code.spritefont
+

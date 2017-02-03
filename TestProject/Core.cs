@@ -15,8 +15,8 @@ namespace TestProject
         public static ScreenStates currentScreen { get; set; }
         
         #region Engine components
-        GraphicsDeviceManager Graphics;
-        SpriteBatch SpriteBatch;
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
         FrameworkManager Framework;
         #endregion
 
@@ -24,18 +24,16 @@ namespace TestProject
         Splash ScreenSplash;
         Menu ScreenMenu;
         #endregion
-        
-        
+
         public Core()
         {
             Framework = new FrameworkManager(1280, 720);
-            Graphics = new GraphicsDeviceManager(this);     
+            graphics = new GraphicsDeviceManager(this);
 
             ScreenSplash = new Splash();
             ScreenMenu = new Menu();
 
             Content.RootDirectory = "Content";
-            
         }
 
         
@@ -51,14 +49,15 @@ namespace TestProject
             
                 IsMouseVisible = true;
                 Window.Title = "Nanosoft";
-
+            
             if (Framework != null)
             {
                 currentScreen = ScreenStates.Splash;
             }
-            ScreenMenu.Initialize();
-            Framework.Refresh(Graphics);
+            ScreenMenu.Initialize(Framework);
             
+            Framework.Refresh(graphics);
+            ScreenSplash.Initialize(Framework);
         }
 
         /// <summary>
@@ -67,8 +66,9 @@ namespace TestProject
         /// </summary>
         protected override void LoadContent()
         {
-            SpriteBatch = new SpriteBatch(GraphicsDevice);
-            ScreenMenu.LoadContent(Content);       
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            ScreenMenu.LoadContent(Content);
+            ScreenSplash.LoadContent(Content);     
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace TestProject
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 currentScreen = ScreenStates.Menu;
-            
+
             switch (currentScreen)
             {
                 case ScreenStates.Splash:
@@ -107,7 +107,6 @@ namespace TestProject
                 default:
                     break;
             }
-
             
             base.Update(gameTime);
         }
@@ -118,16 +117,16 @@ namespace TestProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            SpriteBatch.Begin();
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin();
 
             switch (currentScreen)
             {
                 case ScreenStates.Splash:
-                    ScreenSplash.Draw(SpriteBatch);
+                    ScreenSplash.Draw(spriteBatch);
                     break;
                 case ScreenStates.Menu:
-                    ScreenMenu.Draw(SpriteBatch);
+                    ScreenMenu.Draw(spriteBatch);
                     break;
                 case ScreenStates.Game:
                     break;
@@ -138,10 +137,9 @@ namespace TestProject
                 default:
                     break;
             }
-            SpriteBatch.End();
+            spriteBatch.End();
 
             
-
             base.Draw(gameTime);
         }
     }

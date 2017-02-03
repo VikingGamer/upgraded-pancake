@@ -23,7 +23,7 @@ namespace TestProject
         Highscore
     }
 
-    class FrameworkManager
+    public class FrameworkManager
     {
 
         /// <summary>
