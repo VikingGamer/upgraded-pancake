@@ -21,7 +21,7 @@ namespace TestProject.Entities
         public void Update(GameTime gameTime)
         {
             if (Clicked() == true)
-                Texture.Dispose();
+                Core.currentScreen = ScreenStates.Splash;
         }  
         public void Draw(SpriteBatch spriteBatch)
         {

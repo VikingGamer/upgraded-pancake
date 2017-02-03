@@ -1,3 +1,2 @@
 # upgraded-pancake
-First project ever :)
-
+Brought to you by Nanogear ®
