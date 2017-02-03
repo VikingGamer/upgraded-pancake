@@ -11,11 +11,11 @@ namespace TestProject
 {
     public class GameObject
     {
-        Point position;
+        Point Position;
         bool isVisible;
         public GameObject(Point position, bool isVisible)
         {
-            this.position = position;
+            Position = position;
             this.isVisible = isVisible;
         }
 
