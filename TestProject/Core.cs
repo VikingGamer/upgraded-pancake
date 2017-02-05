@@ -71,7 +71,8 @@ namespace TestProject
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             ScreenMenu.LoadContent(Content);
-            ScreenSplash.LoadContent(Content);     
+            ScreenSplash.LoadContent(Content);
+            ScreenGame.LoadContent(Content);
         }
 
         /// <summary>

@@ -25,6 +25,7 @@ namespace TestProject
 
     public class FrameworkManager
     {
+        Vector2 resolution;
 
         /// <summary>
         /// Construct the framework.
@@ -41,14 +42,13 @@ namespace TestProject
         /// <param name="graphics"></param>
         public void Refresh(GraphicsDeviceManager graphics)
         {
-            graphics.PreferredBackBufferWidth = (int)Resolution.X;
-            graphics.PreferredBackBufferHeight = (int)Resolution.Y;
+            graphics.PreferredBackBufferWidth = (int)resolution.X;
+            graphics.PreferredBackBufferHeight = (int)resolution.Y;
             graphics.ApplyChanges();       
         }
         
         #region Properties
-        public Vector2 Resolution { get; set; }             ///> Window resolution
-        public static ContentManager Content { get; set; }  ///> Asset provider
+        public Vector2 Resolution { get { return resolution; } set { resolution = value; } }             ///> Window resolution
         #endregion
     }
 }
