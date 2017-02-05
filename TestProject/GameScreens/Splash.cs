@@ -34,6 +34,7 @@ namespace TestProject.GameScreens
                 Core.currentScreen = ScreenStates.Menu;
             }
             #endregion
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
