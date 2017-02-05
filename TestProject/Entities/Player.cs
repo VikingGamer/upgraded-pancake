@@ -11,6 +11,11 @@ namespace TestProject.Entities
 {
     public class Player : GameObject
     {
+        string name;
+        int health;
+        int armor;
+        Vector2 size;
+        Point position;
 
         public Player(Point position, bool isVisible) : base(position, isVisible)
         {
@@ -22,11 +27,12 @@ namespace TestProject.Entities
 
         bool isAlive() { return Health <= 0 ? false : true; } 
 
-        #region Properties
-        int Health { get; set; }
-        int Armor { get; set; }
-        Vector2 Size { get; } = new Vector2(32, 32);
-        Point Position { get; set; }
+        #region Variable properties
+        string Name { get { return name; } set { name = value; } }
+        int Health { get { return health; } set { health = value; } }
+        int Armor { get { return armor; } set { armor = value; } }
+        Vector2 Size { get { return size; } set { size = value; } }
+        Point Position { get { return position; } set { position = value; } }
         #endregion
     }
 }
