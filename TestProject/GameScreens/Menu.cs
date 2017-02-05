@@ -15,7 +15,9 @@ namespace TestProject.GameScreens
         Texture2D Background;
         Texture2D TexButton;
         UIElement Button1;
-
+        SpriteFont Font;
+        double TotalFrames;
+        double FramesPerSecond;
         public bool InGame { get; set; }
 
         public override void Initialize(FrameworkManager framework)
@@ -24,6 +26,7 @@ namespace TestProject.GameScreens
         }
         public override void LoadContent(ContentManager Content)
         {
+            Font = Content.Load<SpriteFont>("Main");
             TexButton = Content.Load<Texture2D>("Button");
             Background = Content.Load<Texture2D>("Space");
             Button1 = new UIElement(Point.Zero, true, TexButton);
@@ -32,13 +35,20 @@ namespace TestProject.GameScreens
         {
             Button1.Update(gameTime);
             if (Button1.Clicked()) { Core.currentScreen = ScreenStates.Game; }
+            if (gameTime.ElapsedGameTime.TotalSeconds > 0)
+                FramesPerSecond = gameTime.ElapsedGameTime.Seconds;
         }
 
-        public override void Draw(SpriteBatch spritebatch)
+        public override void Draw(SpriteBatch spritebatch, GameTime gameTime)
         {
+            TotalFrames++;
+            
+
             spritebatch.Draw(Background, Vector2.Zero, Color.White);
-            spritebatch.Draw(Button1.Texture, Button1.Position.ToVector2(), Color.White);
-            Button1.Draw(spritebatch);
+            spritebatch.DrawString(Font, FramesPerSecond.ToString(), new Vector2(500), Color.White);
+            //spritebatch.Draw(Button1.Texture, Button1.Position.ToVector2(), Color.White);
+
+            //Button1.Draw(spritebatch);
 
         }
     }
