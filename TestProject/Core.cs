@@ -51,7 +51,7 @@ namespace TestProject
             
             IsMouseVisible = true;
             Window.Title = "Nanosoft";
-            IsFixedTimeStep = false;
+            IsFixedTimeStep = true;
             
             if (Framework != null)
             {
@@ -128,13 +128,13 @@ namespace TestProject
             switch (currentScreen)
             {
                 case ScreenStates.Splash:
-                    ScreenSplash.Draw(SpriteBatch);
+                    ScreenSplash.Draw(SpriteBatch, gameTime);
                     break;
                 case ScreenStates.Menu:
-                    ScreenMenu.Draw(SpriteBatch);
+                    ScreenMenu.Draw(SpriteBatch, gameTime);
                     break;
                 case ScreenStates.Game:
-                    ScreenGame.Draw(SpriteBatch);
+                    ScreenGame.Draw(SpriteBatch, gameTime);
                     break;
                 case ScreenStates.Pause:
                     break;

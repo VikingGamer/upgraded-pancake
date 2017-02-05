@@ -27,7 +27,7 @@ namespace TestProject.GameScreens
             if (Keyboard.GetState().IsKeyDown(Keys.Right)) { Character.Walk(1); }
             if (Keyboard.GetState().IsKeyDown(Keys.Left)) { Character.Walk(-1); }
         }
-        public override void Draw(SpriteBatch spritebatch)
+        public override void Draw(SpriteBatch spritebatch, GameTime gameTime)
         {
             spritebatch.Draw(Character.Texture, Character.Position.ToVector2(), Color.White);
         }
