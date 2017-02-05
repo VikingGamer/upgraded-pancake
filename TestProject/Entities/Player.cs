@@ -30,6 +30,8 @@ namespace TestProject.Entities
 
         bool isAlive() { return Health <= 0 ? false : true; } 
 
+        public void Walk(int velocity) { position.X += velocity; }
+
         #region Variable properties
         public string Name { get { return name; } set { name = value; } }
         public int Health { get { return health; } set { health = value; } }

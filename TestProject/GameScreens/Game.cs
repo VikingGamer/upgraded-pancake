@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
-
+using Microsoft.Xna.Framework.Input;
 
 namespace TestProject.GameScreens
 {
@@ -25,7 +24,8 @@ namespace TestProject.GameScreens
         }
         public override void Update(GameTime gameTime)
         {
-
+            if (Keyboard.GetState().IsKeyDown(Keys.Right)) { Character.Walk(1); }
+            if (Keyboard.GetState().IsKeyDown(Keys.Left)) { Character.Walk(-1); }
         }
         public override void Draw(SpriteBatch spritebatch)
         {
