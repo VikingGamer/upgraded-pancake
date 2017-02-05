@@ -49,8 +49,9 @@ namespace TestProject
         {
             base.Initialize();
             
-                IsMouseVisible = true;
-                Window.Title = "Nanosoft";
+            IsMouseVisible = true;
+            Window.Title = "Nanosoft";
+            IsFixedTimeStep = false;
             
             if (Framework != null)
             {
