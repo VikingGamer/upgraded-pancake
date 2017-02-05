@@ -20,7 +20,7 @@ namespace TestProject.Entities
             Position = position;
         }
 
-        bool isAlive() { return Health <= 0 ? true : false; } 
+        bool isAlive() { return Health <= 0 ? false : true; } 
 
         #region Properties
         int Health { get; set; }
