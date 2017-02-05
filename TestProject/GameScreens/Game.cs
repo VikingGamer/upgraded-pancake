@@ -7,17 +7,21 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+
+
 namespace TestProject.GameScreens
 {
     public class Game : Screen
     {
-        public override void LoadContent(ContentManager Content)
-        {
-
-        }
+        Entities.Player Character;
         public override void Initialize(FrameworkManager framework)
         {
 
+        }
+        public override void LoadContent(ContentManager Content)
+        {
+            Character = new Entities.Player(Point.Zero, true);
+            Character.Texture = Content.Load<Texture2D>("Character");
         }
         public override void Update(GameTime gameTime)
         {
@@ -25,7 +29,7 @@ namespace TestProject.GameScreens
         }
         public override void Draw(SpriteBatch spritebatch)
         {
-
+            spritebatch.Draw(Character.Texture, Character.Position.ToVector2(), Color.White);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace TestProject.GameScreens
         public override void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(Background, Vector2.Zero, Color.White);
-            spritebatch.Draw(Button1.Texture, Button1.Position.ToVector2(), Color.White);
+            //spritebatch.Draw(Button1.Texture, Button1.Position.ToVector2(), Color.White);
             Button1.Draw(spritebatch);
 
         }
