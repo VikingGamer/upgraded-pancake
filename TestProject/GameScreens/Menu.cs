@@ -32,7 +32,7 @@ namespace TestProject.GameScreens
             if (Button1.Clicked()) { Core.currentScreen = ScreenStates.Game; }
         }
 
-        public override void Draw(SpriteBatch spritebatch)
+        public override void Draw(SpriteBatch spritebatch, GameTime gameTime)
         {
             spritebatch.Draw(Background, Vector2.Zero, Color.White);
             Button1.Draw(spritebatch);
