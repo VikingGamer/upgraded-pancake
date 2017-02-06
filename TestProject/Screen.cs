@@ -15,6 +15,6 @@ namespace TestProject
         public virtual void LoadContent(ContentManager Content) { }
         public virtual void Initialize(FrameworkManager framework) { }
         public virtual void Update(GameTime gameTime) { }
-        public virtual void Draw(SpriteBatch spritebatch, GameTime gameTime) { }
+        public virtual void Draw(SpriteBatch spritebatch) { }
     }
 }

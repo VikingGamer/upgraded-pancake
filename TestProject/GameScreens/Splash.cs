@@ -37,7 +37,7 @@ namespace TestProject.GameScreens
 
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(Font, "nanogear", CenterVec2, Color.White);
         }
