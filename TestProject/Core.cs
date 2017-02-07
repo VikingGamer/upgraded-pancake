@@ -128,13 +128,13 @@ namespace TestProject
             switch (currentScreen)
             {
                 case ScreenStates.Splash:
-                    ScreenSplash.Draw(SpriteBatch, gameTime);
+                    ScreenSplash.Draw(SpriteBatch);
                     break;
                 case ScreenStates.Menu:
-                    ScreenMenu.Draw(SpriteBatch, gameTime);
+                    ScreenMenu.Draw(SpriteBatch);
                     break;
                 case ScreenStates.Game:
-                    ScreenGame.Draw(SpriteBatch, gameTime);
+                    ScreenGame.Draw(SpriteBatch);
                     break;
                 case ScreenStates.Pause:
                     break;
