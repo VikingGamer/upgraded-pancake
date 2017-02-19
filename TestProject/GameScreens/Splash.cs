@@ -31,10 +31,10 @@ namespace TestProject.GameScreens
             m_time += gameTime.ElapsedGameTime.TotalSeconds;
             if (m_time >= m_duration)
             {
+                
                 Core.currentScreen = ScreenStates.Menu;
             }
             #endregion
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)

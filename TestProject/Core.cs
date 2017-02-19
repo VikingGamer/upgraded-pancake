@@ -21,9 +21,9 @@ namespace TestProject
         #endregion
 
         #region Screens
-        GameScreens.Splash ScreenSplash;
-        GameScreens.Menu ScreenMenu;
-        GameScreens.Game ScreenGame;
+        public static GameScreens.Splash ScreenSplash;
+        public static GameScreens.Menu ScreenMenu;
+        public static GameScreens.Game ScreenGame;
         #endregion
 
         public Core()
