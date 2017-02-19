@@ -17,29 +17,41 @@ namespace TestProject.Entities
         int health;
         int armor;
 
-        Vector2 size;
-        Point position;
         Texture2D texture;
+        Rectangle hitBox;
+        bool isVisible;
 
-        public Player(Point position, bool isVisible) : base(position, isVisible)
+        public Player(Texture2D texture, Rectangle hitBox, bool isVisible) : base(texture, hitBox, isVisible)
         {
             Health = 20;
             Armor = 0;
-            Position = position;
+
+            this.texture = texture;
+            this.hitBox = hitBox;
+            this.isVisible = isVisible;
         }
 
         bool isAlive() { return Health <= 0 ? false : true; } 
-
-        public void Walk(int velocity) { position.X += velocity; }
-
+        
+        public void Walk(int velocity, int axis) {
+            if (axis > 0)
+            {
+                hitBox.X += velocity;
+            }
+            else
+            {
+                hitBox.Y -= velocity;
+            }
+        }
+        
         #region Variable properties
         public string Name { get { return name; } set { name = value; } }
         public int Health { get { return health; } set { health = value; } }
         public int Armor { get { return armor; } set { armor = value; } }
 
-        public Vector2 Size { get { return size; } set { size = value; } }
-        public Point Position { get { return position; } set { position = value; } }
         public Texture2D Texture { get { return texture; } set { texture = value; } }
+        public Rectangle HitBox { get { return hitBox; } set { hitBox = value; } }
+        public bool IsVisible { get { return isVisible; } set { isVisible = value; } }
         #endregion
     }
 }

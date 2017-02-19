@@ -11,12 +11,12 @@ namespace TestProject.Entities
 {
     public class UIElement : GameObject
     {
-        public Texture2D Texture;
-        public Point Position;
-        public UIElement(Point position, bool isVisible, Texture2D texture) : base(position, isVisible)
+        public Texture2D texture;
+        public Rectangle hitBox;
+        public UIElement(Rectangle hitBox, bool isVisible, Texture2D texture) : base(hitBox, isVisible)
         {
-            Texture = texture;
-            Position = position;
+            this.texture = texture;
+            this.hitBox = hitBox;
         }
         public void Update(GameTime gameTime)
         {
@@ -25,11 +25,11 @@ namespace TestProject.Entities
         }  
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position.ToVector2(), Color.White);
+            spriteBatch.Draw(texture, hitBox.Location.ToVector2(), Color.White);
         }
         public bool Clicked()
         {
-            if (Texture.Bounds.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            if (texture.Bounds.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 return true;
             else
                 return false;

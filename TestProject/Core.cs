@@ -111,8 +111,7 @@ namespace TestProject
                     break;
                 default:
                     break;
-            }
-            
+            }           
             base.Update(gameTime);
         }
 
@@ -123,8 +122,8 @@ namespace TestProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            SpriteBatch.Begin();
 
+            SpriteBatch.Begin();
             switch (currentScreen)
             {
                 case ScreenStates.Splash:
@@ -145,7 +144,6 @@ namespace TestProject
             }
             SpriteBatch.End();
 
-            
             base.Draw(gameTime);
         }
     }

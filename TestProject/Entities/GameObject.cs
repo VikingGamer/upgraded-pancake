@@ -11,17 +11,21 @@ namespace TestProject.Entities
 {
     public class GameObject
     {
-        Point Position;
+        Texture2D texture;
+        Rectangle hitBox;
         bool isVisible;
-        public GameObject(Point position, bool isVisible)
+
+        public GameObject(Texture2D texture, Rectangle hitBox, bool isVisible)
         {
-            Position = position;
+            this.texture = texture;
+            this.hitBox = hitBox;
             this.isVisible = isVisible;
         }
 
-        #region Properties
-        public bool IsVisible { get { return isVisible; } set { isVisible = value; } }
-        #endregion
-
+        public GameObject(Rectangle hitBox, bool isVisible)
+        {
+            this.hitBox = hitBox;
+            this.isVisible = isVisible;
+        }
     }
 }

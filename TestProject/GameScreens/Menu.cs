@@ -24,7 +24,7 @@ namespace TestProject.GameScreens
         {
             TexButton = Content.Load<Texture2D>("Button");
             Background = Content.Load<Texture2D>("Space");
-            Button1 = new UIElement(Point.Zero, true, TexButton);
+            Button1 = new UIElement(new Rectangle(Point.Zero, new Point(32, 32)), true, TexButton);
         }
         public override void Update(GameTime gameTime)
         {
