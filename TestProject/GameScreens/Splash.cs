@@ -11,7 +11,7 @@ namespace TestProject.GameScreens
 {
     public class Splash : Screen
     {
-        const int m_duration = 7;
+        const int m_duration = 1;
         double m_time;
         Vector2 CenterVec2;
         SpriteFont Font;

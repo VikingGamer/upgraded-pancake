@@ -17,11 +17,10 @@ namespace TestProject.Entities
         int health;
         int armor;
 
-        Texture2D texture;
-        Rectangle hitBox;
-        bool isVisible;
+        const int maxJumpHeight = 300;
+        public bool Jumped = false;
 
-        public Player(Texture2D texture, Rectangle hitBox, bool isVisible) : base(texture, hitBox, isVisible)
+        public Player(Texture2D texture, Rectangle hitBox, bool isVisible) : base(texture, hitBox, isVisible, 1f, new Vector2(0,0))
         {
             Health = 20;
             Armor = 0;
@@ -43,15 +42,24 @@ namespace TestProject.Entities
                 hitBox.Y -= velocity;
             }
         }
+
+        public void Jump(int velocity, GameTime time)
+        {
+            if(hitBox.Location.Y <= maxJumpHeight && Jumped == false)
+            {
+                hitBox.Y -= velocity;
+                Jumped = true;
+            }
+            else
+            {
+                Jumped = false;
+            }
+        }
         
         #region Variable properties
         public string Name { get { return name; } set { name = value; } }
         public int Health { get { return health; } set { health = value; } }
         public int Armor { get { return armor; } set { armor = value; } }
-
-        public Texture2D Texture { get { return texture; } set { texture = value; } }
-        public Rectangle HitBox { get { return hitBox; } set { hitBox = value; } }
-        public bool IsVisible { get { return isVisible; } set { isVisible = value; } }
         #endregion
     }
 }
