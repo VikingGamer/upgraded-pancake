@@ -18,7 +18,7 @@ namespace TestProject.Entities
         int armor;
 
         const int maxJumpHeight = 300;
-        public bool Jumped = false;
+        public bool grounded = false;
 
         public Player(Texture2D texture, Rectangle hitBox, bool isVisible) : base(texture, hitBox, isVisible, 1f, new Vector2(0,0))
         {
@@ -45,14 +45,14 @@ namespace TestProject.Entities
 
         public void Jump(int velocity, GameTime time)
         {
-            if(hitBox.Location.Y <= maxJumpHeight && Jumped == false)
+            if(hitBox.Location.Y <= maxJumpHeight && grounded == false)
             {
                 hitBox.Y -= velocity;
-                Jumped = true;
+                grounded = true;
             }
             else
             {
-                Jumped = false;
+                grounded = false;
             }
         }
         
