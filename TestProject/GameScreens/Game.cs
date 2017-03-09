@@ -15,6 +15,8 @@ namespace TestProject.GameScreens
         Entities.Player Character;
         SpriteFont font;
 
+        
+
         float acc; // temp debug  tool
 
         public override void Initialize(FrameworkManager framework)
@@ -31,7 +33,20 @@ namespace TestProject.GameScreens
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right)) { Character.Walk(1, 1); }
             if (Keyboard.GetState().IsKeyDown(Keys.Left)) { Character.Walk(-1, 1); }
-            if (Keyboard.GetState().IsKeyDown(Keys.Up)) { Character.Jump(20, gameTime); }
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                switch (Character.state)
+                {
+                    case Entities.Player.States.GROUNDED:
+                        Character.Jump(8, gameTime);
+                        break;
+                    case Entities.Player.States.IN_AIR:
+                        if (Character.HitBoxLocationY > 225f) Character.state = Entities.Player.States.GROUNDED;
+                        break;
+                    default:
+                        break;
+                }
+            }
             if (Keyboard.GetState().IsKeyDown(Keys.Down)) { Character.Walk(-20, 0); }
             
             if (Character.HitBoxLocationY <= 225f)
