@@ -15,6 +15,8 @@ namespace TestProject.GameScreens
         Entities.Player Character;
         SpriteFont font;
 
+        
+
         float acc; // temp debug  tool
 
         public override void Initialize(FrameworkManager framework)
@@ -31,7 +33,20 @@ namespace TestProject.GameScreens
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right)) { Character.Walk(1, 1); }
             if (Keyboard.GetState().IsKeyDown(Keys.Left)) { Character.Walk(-1, 1); }
-            if (Keyboard.GetState().IsKeyDown(Keys.Up)) { Character.Jump(10, gameTime); }
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                switch (Character.state)
+                {
+                    case Entities.Player.States.GROUNDED:
+                        Character.Jump(8, gameTime);
+                        break;
+                    case Entities.Player.States.IN_AIR:
+                        if (Character.HitBoxLocationY > 225f) Character.state = Entities.Player.States.GROUNDED;
+                        break;
+                    default:
+                        break;
+                }
+            }
             if (Keyboard.GetState().IsKeyDown(Keys.Down)) { Character.Walk(-20, 0); }
             
             if (Character.HitBoxLocationY <= 225f)
@@ -43,16 +58,11 @@ namespace TestProject.GameScreens
         public override void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(Character.Texture, Character.HitBox.Location.ToVector2(), Color.White);
-            DisplayDetails(spritebatch);
-        }
+            spritebatch.DrawString(font, "Character properties:", new Vector2(100, 50), Color.White);
+            spritebatch.DrawString(font, "mass: "+Character.Mass.ToString(), new Vector2(100, 70), Color.White);
 
-        public void DisplayDetails(SpriteBatch spritebatch)
-        {
-            spritebatch.DrawString(font, "Properties:", new Vector2(100, 50), Color.White);
-            spritebatch.DrawString(font, "mass: " + Character.Mass.ToString() + "u", new Vector2(100, 70), Color.White);
-
-            spritebatch.DrawString(font, "pos Y: " + Character.HitBoxLocationY.ToString(), new Vector2(100, 90), Color.White);
-            spritebatch.DrawString(font, "velocity Y: " + Character.VelocityY.ToString(), new Vector2(100, 105), Color.White);
+            spritebatch.DrawString(font, "pos Y: "+Character.HitBoxLocationY.ToString(), new Vector2(100, 90), Color.White);
+            spritebatch.DrawString(font, "velocity Y: "+Character.VelocityY.ToString(), new Vector2(100, 105), Color.White);
             spritebatch.DrawString(font, "acceleration Y: " + acc.ToString(), new Vector2(100, 125), Color.White);
         }
     }

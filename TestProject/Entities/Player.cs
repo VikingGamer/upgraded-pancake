@@ -16,23 +16,27 @@ namespace TestProject.Entities
         string name;
         int health;
         int armor;
+        public enum States { GROUNDED, IN_AIR }
 
         const int maxJumpHeight = 300;
-        public bool grounded = false;
+        public States state;
 
-        public Player(Texture2D texture, Rectangle hitBox, bool isVisible) : base(texture, hitBox, isVisible, 1f, new Vector2(0,0))
+        public Player(Texture2D texture, Rectangle hitBox, bool isVisible) : base(texture, hitBox, isVisible, 1f, new Vector2(0, 0))
         {
             Health = 20;
             Armor = 0;
+
+            state = States.IN_AIR;
 
             this.texture = texture;
             this.hitBox = hitBox;
             this.isVisible = isVisible;
         }
 
-        bool isAlive() { return Health <= 0 ? false : true; } 
-        
-        public void Walk(int velocity, int axis) {
+        bool isAlive() { return Health <= 0 ? false : true; }
+
+        public void Walk(int velocity, int axis)
+        {
             if (axis > 0)
             {
                 hitBox.X += velocity;
@@ -45,17 +49,12 @@ namespace TestProject.Entities
 
         public void Jump(int velocity, GameTime time)
         {
-            if(hitBox.Location.Y <= maxJumpHeight && grounded == false)
+            if (hitBox.Y <= maxJumpHeight && state == States.GROUNDED)
             {
-                hitBox.Y -= velocity;
-                grounded = true;
-            }
-            else
-            {
-                grounded = false;
+                    hitBox.Y -= velocity;
             }
         }
-        
+
         #region Variable properties
         public string Name { get { return name; } set { name = value; } }
         public int Health { get { return health; } set { health = value; } }
