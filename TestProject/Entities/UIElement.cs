@@ -11,8 +11,6 @@ namespace TestProject.Entities
 {
     public class UIElement : GameObject
     {
-        public Texture2D texture;
-        public Rectangle hitBox;
         public UIElement(Rectangle hitBox, bool isVisible, Texture2D texture) : base(hitBox, isVisible)
         {
             this.texture = texture;

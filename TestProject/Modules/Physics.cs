@@ -20,7 +20,7 @@ namespace TestProject.Modules
         /// </summary>
         /// <param name="time"></param>
         /// <param name="entity"></param>
-        public static float ApplyGravity(GameTime time, Entities.GameObject entity)
+        public static void ApplyGravity(GameTime time, Entities.GameObject entity)
         {
                 Vector2 force = Force(entity);
             
@@ -31,20 +31,8 @@ namespace TestProject.Modules
 
                 entity.HitBoxLocationX += entity.VelocityX;
                 entity.HitBoxLocationY += entity.VelocityY;
-
-            return acceleration.Y;
         }
 
-        public static float InfuseGravityY (GameTime time, Entities.GameObject entity)
-        {
-            Vector2 force = Force(entity);
-
-            Vector2 acceleration = new Vector2(force.X / entity.Mass, force.Y / entity.Mass);
-            entity.VelocityY += acceleration.Y * Variables.DeltaTime(time);
-
-            return entity.HitBoxLocationY += entity.VelocityY;
-
-        }
     }
 
 }

@@ -18,6 +18,8 @@ namespace TestProject.Entities
 
         protected float mass;
         protected Vector2 velocity;
+
+        public static List<GameObject> GameObjects = new List<GameObject>();
         #endregion
 
         public GameObject(Texture2D texture, Rectangle hitBox, bool isVisible)
@@ -25,6 +27,7 @@ namespace TestProject.Entities
             this.texture = texture;
             this.hitBox = hitBox;
             this.isVisible = isVisible;
+            GameObjects.Add(this);
         }
 
         public GameObject(Texture2D texture, Rectangle hitBox, bool isVisible, float mass, Vector2 velocity)
@@ -34,12 +37,19 @@ namespace TestProject.Entities
             this.isVisible = isVisible;
             this.mass = mass;
             this.velocity = velocity;
+            GameObjects.Add(this);
         }
 
         public GameObject(Rectangle hitBox, bool isVisible)
         {
             this.hitBox = hitBox;
             this.isVisible = isVisible;
+            GameObjects.Add(this);
+        }
+
+        public virtual void Destroy(GameObject gObj)
+        {
+            GameObjects.Remove(gObj);
         }
 
         #region Properties

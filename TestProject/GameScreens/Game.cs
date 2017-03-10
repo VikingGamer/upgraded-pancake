@@ -17,11 +17,10 @@ namespace TestProject.GameScreens
 
         
 
-        float acc; // temp debug  tool
 
         public override void Initialize(FrameworkManager framework)
         {
-
+            
         }
         public override void LoadContent(ContentManager Content)
         {
@@ -50,7 +49,7 @@ namespace TestProject.GameScreens
             if (Keyboard.GetState().IsKeyDown(Keys.Down)) { Character.Walk(-20, 0); }
             
             if (Character.HitBoxLocationY <= 225f)
-               acc = Modules.Physics.ApplyGravity(gameTime, Character);
+               Modules.Physics.ApplyGravity(gameTime, Character);
 
             if (Character.HitBoxLocationY >= 225)
                 Character.VelocityY = 0;
@@ -63,7 +62,11 @@ namespace TestProject.GameScreens
 
             spritebatch.DrawString(font, "pos Y: "+Character.HitBoxLocationY.ToString(), new Vector2(100, 90), Color.White);
             spritebatch.DrawString(font, "velocity Y: "+Character.VelocityY.ToString(), new Vector2(100, 105), Color.White);
-            spritebatch.DrawString(font, "acceleration Y: " + acc.ToString(), new Vector2(100, 125), Color.White);
+            spritebatch.DrawString(font, "acceleration Y: " + Variables.Gravity, new Vector2(100, 125), Color.White);
+            
+            spritebatch.DrawString(font, "GameObjects Active: " + Entities.GameObject.GameObjects.Count, new Vector2(100, 145), Color.White);
+            
+
         }
     }
 }

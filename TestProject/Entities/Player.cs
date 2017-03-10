@@ -26,7 +26,7 @@ namespace TestProject.Entities
             Health = 20;
             Armor = 0;
 
-            state = States.IN_AIR;
+            state = States.GROUNDED;
 
             this.texture = texture;
             this.hitBox = hitBox;

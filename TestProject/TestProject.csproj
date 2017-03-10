@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core.cs" />
+    <Compile Include="Entities\Collidable.cs" />
     <Compile Include="Entities\Particle.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="GameScreens\Game.cs" />
