@@ -24,6 +24,7 @@ namespace TestProject
         public static GameScreens.Splash ScreenSplash;
         public static GameScreens.Menu ScreenMenu;
         public static GameScreens.Game ScreenGame;
+        public static GameScreens.Editor ScreenEditor;
         #endregion
 
         public Core()
@@ -34,6 +35,7 @@ namespace TestProject
             ScreenSplash = new GameScreens.Splash();
             ScreenMenu = new GameScreens.Menu();
             ScreenGame = new GameScreens.Game();
+            ScreenEditor = new GameScreens.Editor();
 
             Content.RootDirectory = "Content";
         }
@@ -61,6 +63,7 @@ namespace TestProject
             
             Framework.Refresh(Graphics);
             ScreenSplash.Initialize(Framework);
+            ScreenEditor.Initialize(Framework);
         }
 
         /// <summary>
@@ -109,6 +112,9 @@ namespace TestProject
                     break;
                 case ScreenStates.Highscore:
                     break;
+                case ScreenStates.Editor:
+                    // update
+                    break;
                 default:
                     break;
             }           
@@ -138,6 +144,9 @@ namespace TestProject
                 case ScreenStates.Pause:
                     break;
                 case ScreenStates.Highscore:
+                    break;
+                case ScreenStates.Editor:
+                    
                     break;
                 default:
                     break;

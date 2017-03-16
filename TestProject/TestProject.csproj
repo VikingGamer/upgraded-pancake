@@ -42,6 +42,7 @@
     <Compile Include="Entities\Collidable.cs" />
     <Compile Include="Entities\Particle.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="GameScreens\Editor.cs" />
     <Compile Include="GameScreens\Game.cs" />
     <Compile Include="Entities\GameObject.cs" />
     <Compile Include="FrameworkManager.cs" />

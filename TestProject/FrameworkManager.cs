@@ -20,7 +20,9 @@ namespace TestProject
         Menu,
         Game,
         Pause,
-        Highscore
+        Highscore,
+
+        Editor = 255
     }
 
     public class FrameworkManager
