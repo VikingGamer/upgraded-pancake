@@ -13,6 +13,7 @@ namespace TestProject.GameScreens
     public class Game : Screen
     {
         Entities.Player Character;
+        Entities.Particle Particle;
         SpriteFont font;
 
         
@@ -27,6 +28,9 @@ namespace TestProject.GameScreens
             Character = new Entities.Player(Content.Load<Texture2D>("pump"), new Rectangle(Point.Zero, new Point(32, 32)), true);
             Character.Texture = Content.Load<Texture2D>("pump");
             font = Content.Load<SpriteFont>("Code");
+
+            Particle = new Entities.Particle(Content.Load<Texture2D>("Particle"), new Rectangle(Point.Zero, new Point(32, 32)), true, Vector2.Zero);
+            
         }
         public override void Update(GameTime gameTime)
         {
@@ -57,6 +61,8 @@ namespace TestProject.GameScreens
         public override void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(Character.Texture, Character.HitBox.Location.ToVector2(), Color.White);
+            spritebatch.Draw(Particle.Texture, Particle.HitBox.Location.ToVector2(), Color.White);
+
             spritebatch.DrawString(font, "Character properties:", new Vector2(100, 50), Color.White);
             spritebatch.DrawString(font, "mass: "+Character.Mass.ToString(), new Vector2(100, 70), Color.White);
 

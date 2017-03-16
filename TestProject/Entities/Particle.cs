@@ -8,20 +8,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TestProject.Entities
 {
-    public class Particle
+    public class Particle : GameObject
     {
-        /*  Particle blueprint 
-         * 
-         *  - GameObject
-         *      
-         *  - Velocity  
-         *  - Lifespan
-         *      
-         *      
-         *      
-         *        
-         *      
-         */
+        /// <summary>
+        /// Particle lifespan length in sec.
+        /// </summary>
+        ushort lifespan;
+
+        public Particle(Texture2D texture, Rectangle hitBox, bool isVisible, Vector2 velocity) : base(texture, hitBox, isVisible, 1f, velocity)
+        {
+            lifespan = 50;
+            this.velocity = velocity;
+        }
+        
+        public ushort Lifespan { get { return lifespan; } }
 
     }
 }
