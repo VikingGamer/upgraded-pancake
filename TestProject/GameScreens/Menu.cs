@@ -29,10 +29,10 @@ namespace TestProject.GameScreens
         public override void Update(GameTime gameTime)
         {
             Button1.Update(gameTime);
-            if (Button1.Clicked())
+            if (Button1.ButtonState == UIElement.Buttonstate.Clicked)
             {
                 Core.currentScreen = ScreenStates.Game;
-                Entities.GameObject.GameObjects.RemoveAt(0);
+                GameObject.GameObjects.RemoveAt(0);
             }
         }
         public override void Draw(SpriteBatch spritebatch)

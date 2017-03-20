@@ -11,6 +11,11 @@ namespace TestProject.Entities
 {
     public class UIElement : GameObject
     {
+        public Buttonstate ButtonState = new Buttonstate();
+        public enum Buttonstate
+        {
+            Active,Deative,Hover,Unhover,Clicked,Released
+        }
         public UIElement(Rectangle hitBox, bool isVisible, Texture2D texture) : base(hitBox, isVisible)
         {
             this.texture = texture;
@@ -18,19 +23,15 @@ namespace TestProject.Entities
         }
         public void Update(GameTime gameTime)
         {
-            if (Clicked() == true)
-                Core.currentScreen = ScreenStates.Game;
+            if (texture.Bounds.Contains(Mouse.GetState().Position))
+                ButtonState = Buttonstate.Hover;
+            if (texture.Bounds.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+                ButtonState = Buttonstate.Clicked;
+            
         }  
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, hitBox.Location.ToVector2(), Color.White);
-        }
-        public bool Clicked()
-        {
-            if (texture.Bounds.Contains(Mouse.GetState().Position) && Mouse.GetState().LeftButton == ButtonState.Pressed)
-                return true;
-            else
-                return false;
         }
     }
 }
