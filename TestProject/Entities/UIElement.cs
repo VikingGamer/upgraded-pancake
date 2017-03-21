@@ -11,10 +11,14 @@ namespace TestProject.Entities
 {
     public class UIElement : GameObject
     {
-        public Buttonstate ButtonState = new Buttonstate();
         public enum Buttonstate
         {
-            Active,Deative,Hover,Unhover,Clicked,Released
+            Active,
+            Deative,
+            Hover,
+            Unhover,
+            Clicked,
+            Released
         }
         public UIElement(Rectangle hitBox, bool isVisible, Texture2D texture) : base(hitBox, isVisible)
         {
@@ -33,5 +37,8 @@ namespace TestProject.Entities
         {
             spriteBatch.Draw(texture, hitBox.Location.ToVector2(), Color.White);
         }
+
+        public Buttonstate ButtonState { get; set; }
+
     }
 }
