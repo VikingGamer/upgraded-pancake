@@ -25,8 +25,7 @@ namespace TestProject.GameScreens
         }
         public override void LoadContent(ContentManager Content)
         {
-            Character = new Entities.Player(Content.Load<Texture2D>("pump"), new Rectangle(Point.Zero, new Point(32, 32)), true);
-            Character.Texture = Content.Load<Texture2D>("Fighter");
+            Character = new Entities.Player(Content.Load<Texture2D>("Fighter"), new Rectangle(Point.Zero, new Point(32, 32)), true);
             font = Content.Load<SpriteFont>("Code");
 
             Particle = new Entities.Particle(Content.Load<Texture2D>("Particle"), new Rectangle(Point.Zero, new Point(32, 32)), true, Vector2.Zero);
