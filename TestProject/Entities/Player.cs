@@ -18,6 +18,8 @@ namespace TestProject.Entities
         int armor;
         public enum States { GROUNDED, IN_AIR }
 
+        Player_utilities.Controls input;
+
         const int maxJumpHeight = 300;
         public States state;
 
@@ -31,23 +33,30 @@ namespace TestProject.Entities
             this.texture = texture;
             this.hitBox = hitBox;
             this.isVisible = isVisible;
+            this.input = new Player_utilities.Controls(this);
         }
 
+        /// <summary>
+        /// Check whether player is alive or not
+        /// </summary>
+        /// <returns> Alive: true/false </returns>
         bool isAlive() { return Health <= 0 ? false : true; }
 
-        public void Walk(int velocity, int axis)
+        /// <summary>
+        /// Force player to walk
+        /// </summary>
+        /// <param name="velocity"> Walking speed </param>
+        /// <param name="axis"> Walking direction </param>
+        public void Walk(int velocity, Variables.World_Axis direction)
         {
-            if (axis > 0)
-            {
-                hitBox.X += velocity;
-            }
-            else
-            {
-                hitBox.Y -= velocity;
-            }
+            hitBox.X += velocity * (int)direction;
         }
 
-        public void Jump(int velocity, GameTime time)
+        /// <summary>
+        /// Force player to jump
+        /// </summary>
+        /// <param name="velocity"> Jumping force </param>
+        public void Jump(int velocity)
         {
             if (hitBox.Y <= maxJumpHeight && state == States.GROUNDED)
             {
@@ -59,6 +68,7 @@ namespace TestProject.Entities
         public string Name { get { return name; } set { name = value; } }
         public int Health { get { return health; } set { health = value; } }
         public int Armor { get { return armor; } set { armor = value; } }
+        public Player_utilities.Controls Input { get { return input; } }
         #endregion
     }
 }

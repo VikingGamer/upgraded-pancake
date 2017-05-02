@@ -16,44 +16,27 @@ namespace TestProject.GameScreens
         Entities.Particle Particle;
         SpriteFont font;
 
-        
-
 
         public override void Initialize(FrameworkManager framework)
         {
-            
+
         }
         public override void LoadContent(ContentManager Content)
         {
-            Character = new Entities.Player(Content.Load<Texture2D>("Fighter"), new Rectangle(Point.Zero, new Point(32, 32)), true);
+            Character = new Entities.Player(Content.Load<Texture2D>("Particle"), new Rectangle(Point.Zero, new Point(32, 32)), true);
             font = Content.Load<SpriteFont>("Code");
 
             Particle = new Entities.Particle(Content.Load<Texture2D>("Particle"), new Rectangle(Point.Zero, new Point(32, 32)), true, Vector2.Zero);
-            
         }
         public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Right)) { Character.Walk(1, 1); }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)) { Character.Walk(-1, 1); }
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                switch (Character.state)
-                {
-                    case Entities.Player.States.GROUNDED:
-                        Character.Jump(8, gameTime);
-                        break;
-                    case Entities.Player.States.IN_AIR:
-                        if (Character.HitBoxLocationY > 225f) Character.state = Entities.Player.States.GROUNDED;
-                        break;
-                    default:
-                        break;
-                }
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Down)) { Character.Walk(-20, 0); }
-            
-            if (Character.HitBoxLocationY <= 225f)
-               Modules.Physics.ApplyGravity(gameTime, Character);
+            Character.Input.Movement(gameTime);
 
+            // Apply gravity : GameContext ?
+
+            if (Character.HitBoxLocationY <= 225f)
+                Modules.Physics.ApplyGravity(gameTime, Character);
+            
             if (Character.HitBoxLocationY >= 225)
                 Character.VelocityY = 0;
         }
@@ -70,7 +53,6 @@ namespace TestProject.GameScreens
             spritebatch.DrawString(font, "acceleration Y: " + Variables.Gravity, new Vector2(100, 125), Color.White);
             
             spritebatch.DrawString(font, "GameObjects Active: " + Entities.GameObject.GameObjects.Count, new Vector2(100, 145), Color.White);
-            
 
         }
     }

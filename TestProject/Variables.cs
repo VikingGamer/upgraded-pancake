@@ -14,5 +14,10 @@ namespace TestProject
         {
             return (float)time.ElapsedGameTime.TotalSeconds;
         }
+        public enum World_Axis
+        {
+            RIGHT = 1, 
+            LEFT = -1,   
+        }
     }
 }
