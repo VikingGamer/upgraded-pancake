@@ -28,7 +28,7 @@ namespace TestProject.GameScreens
         public override void Update(GameTime gameTime)
         {
             #region Time handling
-            m_time += gameTime.ElapsedGameTime.TotalSeconds;
+            m_time += Variables.DeltaTime(gameTime); ;
             if (m_time >= m_duration)
             {
                 

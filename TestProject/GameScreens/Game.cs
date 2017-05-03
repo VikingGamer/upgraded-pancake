@@ -16,6 +16,10 @@ namespace TestProject.GameScreens
         Entities.Particle Particle;
         SpriteFont font;
 
+        double m_time;
+        bool kek = false;
+
+        int state = 0;
 
         public override void Initialize(FrameworkManager framework)
         {
@@ -23,7 +27,7 @@ namespace TestProject.GameScreens
         }
         public override void LoadContent(ContentManager Content)
         {
-            Character = new Entities.Player(Content.Load<Texture2D>("Particle"), new Rectangle(Point.Zero, new Point(32, 32)), true);
+            Character = new Entities.Player(Content.Load<Texture2D>("Sprite_sheet_walkingmp"), new Rectangle(Point.Zero, new Point(32, 32)), true);
             font = Content.Load<SpriteFont>("Code");
 
             Particle = new Entities.Particle(Content.Load<Texture2D>("Particle"), new Rectangle(Point.Zero, new Point(32, 32)), true, Vector2.Zero);
@@ -32,9 +36,11 @@ namespace TestProject.GameScreens
         {
             Character.Input.Movement(gameTime);
 
-            // Apply gravity : GameContext ?
+            m_time += Variables.DeltaTime(gameTime);
 
-            if (Character.HitBoxLocationY <= 225f)
+                // Apply gravity : GameContext ?
+
+                if (Character.HitBoxLocationY <= 225f)
                 Modules.Physics.ApplyGravity(gameTime, Character);
             
             if (Character.HitBoxLocationY >= 225)
@@ -42,9 +48,11 @@ namespace TestProject.GameScreens
         }
         public override void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(Character.Texture, Character.HitBox.Location.ToVector2(), Color.White);
-            spritebatch.Draw(Particle.Texture, Particle.HitBox.Location.ToVector2(), Color.White);
+            if (state >= 2100)
+                state = 0;
 
+            spritebatch.Draw(Character.Texture, Character.HitBox.Location.ToVector2(), new Rectangle(state, 0, 360, 650), Color.White);
+            spritebatch.Draw(Particle.Texture, Particle.HitBox.Location.ToVector2(), Color.White);
             spritebatch.DrawString(font, "Character properties:", new Vector2(100, 50), Color.White);
             spritebatch.DrawString(font, "mass: "+Character.Mass.ToString(), new Vector2(100, 70), Color.White);
 
@@ -54,6 +62,11 @@ namespace TestProject.GameScreens
             
             spritebatch.DrawString(font, "GameObjects Active: " + Entities.GameObject.GameObjects.Count, new Vector2(100, 145), Color.White);
 
+            if (m_time >= 0.2)
+            {
+                state += 360;
+                m_time = 0;
+            }
         }
     }
 }
