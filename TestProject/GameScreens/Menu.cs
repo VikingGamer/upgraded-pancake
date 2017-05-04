@@ -16,6 +16,9 @@ namespace TestProject.GameScreens
         Texture2D TexButton;
         UIElement Button1;
 
+        double m_time;
+        float transparancy = 0.2f;
+
         public override void Initialize(FrameworkManager framework)
         {
             
@@ -28,6 +31,16 @@ namespace TestProject.GameScreens
         }
         public override void Update(GameTime gameTime)
         {
+            m_time += Variables.DeltaTime(gameTime);
+            if (m_time >= 0.2)
+            {
+                transparancy += 0.15f;
+                m_time = 0;
+            }
+
+            if (transparancy >= 1.0f)
+                transparancy = 0.0f;
+
             Button1.Update(gameTime);
             if (Button1.ButtonState == UIElement.Buttonstate.Clicked)
             {
@@ -37,7 +50,7 @@ namespace TestProject.GameScreens
         }
         public override void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(Background, Vector2.Zero, Color.White);
+            spritebatch.Draw(Background, Vector2.Zero, Color.White * transparancy);
             Button1.Draw(spritebatch);
         }
     }

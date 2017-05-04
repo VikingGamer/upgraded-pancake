@@ -17,7 +17,6 @@ namespace TestProject.GameScreens
         SpriteFont font;
 
         double m_time;
-        bool kek = false;
 
         int walking_state = 0;
         int idle_state = 0;
@@ -39,16 +38,23 @@ namespace TestProject.GameScreens
 
             m_time += Variables.DeltaTime(gameTime);
 
-                // Apply gravity : GameContext ?
+            if (m_time >= 0.2)
+            {
+                walking_state += 360;
+                idle_state += 350;
+                m_time = 0;
+            }
+            // Apply gravity : GameContext ?
 
-                if (Character.HitBoxLocationY <= 68f)
+            if (Character.HitBoxLocationY <= 68f)
                 Modules.Physics.ApplyGravity(gameTime, Character);
             
             if (Character.HitBoxLocationY >= 68f)
                 Character.VelocityY = 0;
         }
         public override void Draw(SpriteBatch spritebatch)
-        {
+        { 
+
             if (walking_state >= 2100)
                 walking_state = 0;
 
@@ -69,13 +75,8 @@ namespace TestProject.GameScreens
             spritebatch.DrawString(font, "acceleration Y: " + Variables.Gravity, new Vector2(100, 125), Color.White);
             
             spritebatch.DrawString(font, "GameObjects Active: " + Entities.GameObject.GameObjects.Count, new Vector2(100, 145), Color.White);
+            
 
-            if (m_time >= 0.2)
-            {
-                walking_state += 360;
-                idle_state += 360;
-                m_time = 0;
-            }
         }
     }
 }
