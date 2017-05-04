@@ -19,7 +19,8 @@ namespace TestProject.GameScreens
         double m_time;
         bool kek = false;
 
-        int state = 0;
+        int walking_state = 0;
+        int idle_state = 0;
 
         public override void Initialize(FrameworkManager framework)
         {
@@ -27,7 +28,7 @@ namespace TestProject.GameScreens
         }
         public override void LoadContent(ContentManager Content)
         {
-            Character = new Entities.Player(Content.Load<Texture2D>("Sprite_sheet_walkingmp"), new Rectangle(Point.Zero, new Point(32, 32)), true);
+            Character = new Entities.Player(Content.Load<Texture2D>("Sprite_sheet_walkingmp"), new Rectangle(Point.Zero, new Point(32, 32)), true, Content.Load<Texture2D>("Sprite_sheet_idling"));
             font = Content.Load<SpriteFont>("Code");
 
             Particle = new Entities.Particle(Content.Load<Texture2D>("Particle"), new Rectangle(Point.Zero, new Point(32, 32)), true, Vector2.Zero);
@@ -40,18 +41,25 @@ namespace TestProject.GameScreens
 
                 // Apply gravity : GameContext ?
 
-                if (Character.HitBoxLocationY <= 225f)
+                if (Character.HitBoxLocationY <= 68f)
                 Modules.Physics.ApplyGravity(gameTime, Character);
             
-            if (Character.HitBoxLocationY >= 225)
+            if (Character.HitBoxLocationY >= 68f)
                 Character.VelocityY = 0;
         }
         public override void Draw(SpriteBatch spritebatch)
         {
-            if (state >= 2100)
-                state = 0;
+            if (walking_state >= 2100)
+                walking_state = 0;
 
-            spritebatch.Draw(Character.Texture, Character.HitBox.Location.ToVector2(), new Rectangle(state, 0, 360, 650), Color.White);
+            if (idle_state >= 1050)
+                idle_state = 0;
+
+            if (Character.animation == Entities.Player.Animation.IDLE)
+                spritebatch.Draw(Character.Idle, Character.HitBox.Location.ToVector2(), new Rectangle(idle_state, 0, 360, 650), Color.White);
+            if (Character.animation == Entities.Player.Animation.WALK)
+                spritebatch.Draw(Character.Texture, Character.HitBox.Location.ToVector2(), new Rectangle(walking_state, 0, 360, 650), Color.White);
+
             spritebatch.Draw(Particle.Texture, Particle.HitBox.Location.ToVector2(), Color.White);
             spritebatch.DrawString(font, "Character properties:", new Vector2(100, 50), Color.White);
             spritebatch.DrawString(font, "mass: "+Character.Mass.ToString(), new Vector2(100, 70), Color.White);
@@ -64,7 +72,8 @@ namespace TestProject.GameScreens
 
             if (m_time >= 0.2)
             {
-                state += 360;
+                walking_state += 360;
+                idle_state += 360;
                 m_time = 0;
             }
         }

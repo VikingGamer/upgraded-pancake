@@ -24,10 +24,22 @@ namespace TestProject.Entities.Player_utilities
         /// <param name="gameTime"> Time </param>
         public void Movement(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Right)) { Character.Walk(1, Variables.World_Axis.RIGHT); }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)) { Character.Walk(1, Variables.World_Axis.LEFT); }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right)) {
+                Character.Walk(1, Variables.World_Axis.RIGHT);
+                Character.animation = Player.Animation.WALK;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Left)) {
+                Character.Walk(1, Variables.World_Axis.LEFT);
+                Character.animation = Player.Animation.WALK;
+            }
+            else
+            {
+                Character.animation = Player.Animation.IDLE;
+            }
+
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
+                Character.animation = Player.Animation.WALK;
                 switch (Character.state)
                 {
                     case Entities.Player.States.GROUNDED:
@@ -40,6 +52,7 @@ namespace TestProject.Entities.Player_utilities
                         break;
                 }
             }
+
 
             // if (Keyboard.GetState().IsKeyDown(Keys.Down)) { Character.Walk(-20, ); }
 

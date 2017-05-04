@@ -17,23 +17,31 @@ namespace TestProject.Entities
         int health;
         int armor;
         public enum States { GROUNDED, IN_AIR }
+        public enum Animation { IDLE, WALK }
 
         Player_utilities.Controls input;
 
         const int maxJumpHeight = 300;
-        public States state;
 
-        public Player(Texture2D texture, Rectangle hitBox, bool isVisible) : base(texture, hitBox, isVisible, 1f, new Vector2(0, 0))
+        public States state;
+        public Animation animation;
+
+        Texture2D IDLE;
+
+        public Player(Texture2D texture, Rectangle hitBox, bool isVisible, Texture2D idle) : base(texture, hitBox, isVisible, 1f, new Vector2(0, 0))
         {
             Health = 20;
             Armor = 0;
 
             state = States.GROUNDED;
+            animation = Animation.IDLE;
 
             this.texture = texture;
             this.hitBox = hitBox;
             this.isVisible = isVisible;
             this.input = new Player_utilities.Controls(this);
+
+            this.IDLE = idle;
         }
 
         /// <summary>
@@ -69,6 +77,8 @@ namespace TestProject.Entities
         public int Health { get { return health; } set { health = value; } }
         public int Armor { get { return armor; } set { armor = value; } }
         public Player_utilities.Controls Input { get { return input; } }
+
+        public Texture2D Idle { get { return IDLE; } }
         #endregion
     }
 }
